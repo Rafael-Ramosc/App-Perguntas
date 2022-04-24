@@ -4,14 +4,15 @@ main() {
   runApp(PerguntaApp());
 }
 
-class PerguntaApp extends StatelessWidget {
-  const PerguntaApp({Key? key}) : super(key: key);
-
+class PerguntaAppState extends State<PerguntaApp> {
   var perguntaSelecionada = 0;
 
   void responder() {
-    perguntaSelecionada++;
-    print('Respondido!');
+    setState(() {
+      perguntaSelecionada++;
+    });
+
+    print(perguntaSelecionada);
   }
 
   @override
@@ -29,7 +30,7 @@ class PerguntaApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(perguntas[0]),
+            Text(perguntas[perguntaSelecionada]),
             ElevatedButton(
               onPressed: responder,
               child: Text('Resposta 1'),
@@ -48,5 +49,12 @@ class PerguntaApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class PerguntaApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return PerguntaAppState();
   }
 }
