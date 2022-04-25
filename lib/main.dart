@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './questao.dart';
+import './resposta.dart';
 
 main() {
   runApp(PerguntaApp());
@@ -11,8 +13,6 @@ class PerguntaAppState extends State<PerguntaApp> {
     setState(() {
       perguntaSelecionada++;
     });
-
-    print(perguntaSelecionada);
   }
 
   @override
@@ -20,6 +20,11 @@ class PerguntaAppState extends State<PerguntaApp> {
     final perguntas = [
       'Qual sua cor favorita?',
       'Qual seu animal favorito?',
+    ];
+    final resposta = [
+      'Resposta 1',
+      'Resposta 2',
+      'Resposta 3',
     ];
 
     return MaterialApp(
@@ -30,21 +35,10 @@ class PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Text(perguntas[perguntaSelecionada]),
-            ElevatedButton(
-              onPressed: responder,
-              child: Text('Resposta 1'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print('Resposta 2 respondida!');
-              },
-              child: Text('Resposta 2'),
-            ),
-            ElevatedButton(
-              onPressed: () => print('Resposta 3 respondida'),
-              child: Text('Resposta 3'),
-            ),
+            Questao(perguntas[perguntaSelecionada]),
+            Resposta(resposta[0], responder),
+            Resposta(resposta[1], responder),
+            Resposta(resposta[2], responder),
           ],
         ),
       ),
