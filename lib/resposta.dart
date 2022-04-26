@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './main.dart';
 
 class Resposta extends StatelessWidget {
   final String answer;
@@ -15,7 +14,7 @@ class Resposta extends StatelessWidget {
         onPressed: quandoSelecionado,
         child: Text(answer),
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.red[400]),
+            backgroundColor: MaterialStateProperty.all(Colors.purple),
             foregroundColor: MaterialStateProperty.all(Colors.black87)),
       ),
     );
