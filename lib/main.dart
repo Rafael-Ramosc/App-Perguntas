@@ -9,43 +9,46 @@ main() {
 
 class PerguntaAppState extends State<PerguntaApp> {
   var perguntaSelecionada = 0;
+  var notaTotal = 0;
 
   final List<Map> perguntas = const [
     {
       'texto': 'Qual sua cor favorita?',
       'respostas': [
-        'Verde',
-        'Vermelho',
-        'Preto',
-        'Branco',
+        {'texto': 'Vermelho', 'nota': 10},
+        {'texto': 'Preto', 'nota': 8},
+        {'texto': 'Branco', 'nota': 5},
+        {'texto': 'Verde', 'nota': 3},
       ],
     },
     {
       'texto': 'Qual seu animal favorito?',
       'respostas': [
-        'Cachorro',
-        'Gato',
-        'Papagaio',
-        'Mico',
+        {'texto': 'Cachorro', 'nota': 10},
+        {'texto': 'Gato', 'nota': 8},
+        {'texto': 'Papagaio', 'nota': 5},
+        {'texto': 'Mico', 'nota': 3},
       ],
     },
     {
       'texto': 'Qual seu carro favorito?',
       'respostas': [
-        'Gol',
-        'Uno',
-        'Chevette',
-        'Renault Kangoo',
+        {'texto': 'Gol', 'nota': 3},
+        {'texto': 'Uno', 'nota': 5},
+        {'texto': 'Chevette', 'nota': 8},
+        {'texto': 'Renault Kangoo', 'nota': 10},
       ],
     }
   ];
 
-  void responder() {
+  void responder(int nota) {
     if (temPerguntaSelecionada) {
       setState(() {
         perguntaSelecionada++;
+        notaTotal += nota;
       });
     }
+    print(notaTotal);
   }
 
   bool get temPerguntaSelecionada {
@@ -72,7 +75,7 @@ class PerguntaAppState extends State<PerguntaApp> {
                 perguntas: perguntas,
                 perguntaSelecionada: perguntaSelecionada,
                 quandoResponder: responder)
-            : Resultado('Parabéns!'),
+            : Resultado(notaTotal),
       ),
     );
   }

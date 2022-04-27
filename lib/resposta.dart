@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Resposta extends StatelessWidget {
-  final String answer;
+  final String resp;
   final void Function() quandoSelecionado;
 
-  Resposta(this.answer, this.quandoSelecionado);
+  Resposta(this.resp, this.quandoSelecionado);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class Resposta extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: quandoSelecionado,
-        child: Text(answer),
+        child: Text(resp),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.purple),
             foregroundColor: MaterialStateProperty.all(Colors.black87)),
