@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
-import './resposta.dart';
+import './resultado.dart';
+import './questinario.dart';
 
 main() {
   runApp(PerguntaApp());
@@ -12,15 +13,30 @@ class PerguntaAppState extends State<PerguntaApp> {
   final List<Map> perguntas = const [
     {
       'texto': 'Qual sua cor favorita?',
-      'respostas': ['Verde', 'Vermelho', 'Preto', 'Branco'],
+      'respostas': [
+        'Verde',
+        'Vermelho',
+        'Preto',
+        'Branco',
+      ],
     },
     {
       'texto': 'Qual seu animal favorito?',
-      'respostas': ['Cachorro', 'Gato', 'Papagaio', 'Mico'],
+      'respostas': [
+        'Cachorro',
+        'Gato',
+        'Papagaio',
+        'Mico',
+      ],
     },
     {
       'texto': 'Qual seu carro favorito?',
-      'respostas': ['Gol', 'Uno', 'Chevette', 'Renault Kangoo'],
+      'respostas': [
+        'Gol',
+        'Uno',
+        'Chevette',
+        'Renault Kangoo',
+      ],
     }
   ];
 
@@ -44,13 +60,6 @@ class PerguntaAppState extends State<PerguntaApp> {
       respostas.add(Resposta(textoResp, responder)); Um exemplo mais imperativo
     }*/
 
-    List<String>? respostas = temPerguntaSelecionada
-        ? perguntas[perguntaSelecionada]['respostas']
-        : [];
-
-    List<Widget> widgets =
-        respostas!.map((t) => Resposta(t, responder)).toList();
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -59,18 +68,11 @@ class PerguntaAppState extends State<PerguntaApp> {
           backgroundColor: Colors.purple,
         ),
         body: temPerguntaSelecionada
-            ? Column(
-                children: <Widget>[
-                  Questao(perguntas[perguntaSelecionada]['texto'].toString()),
-                  ...widgets,
-                ],
-              )
-            : const Center(
-                child: Text(
-                  'Parabéns!',
-                  style: TextStyle(fontSize: 28),
-                ),
-              ),
+            ? Questionario(
+                perguntas: perguntas,
+                perguntaSelecionada: perguntaSelecionada,
+                quandoResponder: responder)
+            : Resultado('Parabéns!'),
       ),
     );
   }
