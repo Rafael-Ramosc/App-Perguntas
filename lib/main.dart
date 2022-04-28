@@ -51,6 +51,13 @@ class PerguntaAppState extends State<PerguntaApp> {
     print(notaTotal);
   }
 
+  void reiniciarQuestionario() {
+    setState(() {
+      perguntaSelecionada = 0;
+      notaTotal = 0;
+    });
+  }
+
   bool get temPerguntaSelecionada {
     return perguntaSelecionada < perguntas.length;
   }
@@ -75,7 +82,7 @@ class PerguntaAppState extends State<PerguntaApp> {
                 perguntas: perguntas,
                 perguntaSelecionada: perguntaSelecionada,
                 quandoResponder: responder)
-            : Resultado(notaTotal),
+            : Resultado(notaTotal, reiniciarQuestionario),
       ),
     );
   }
